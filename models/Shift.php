@@ -2,9 +2,8 @@
 
 class Shift{
   public $code;
-  public $event_code;
+  public $event_id;
   public $list_volunteers;
-  public $status;
 
   public function save()
   {
@@ -15,9 +14,8 @@ class Shift{
   {
     return array(
       'code' => $this->code,
-      'event_code' => $this->event_code,
-      'list_volunteers' => $this->list_volunteers,
-      'status' => $this->status
+      'event_id' => $this->event_id,
+      'list_volunteers' => $this->list_volunteers
     );
   }
 }
