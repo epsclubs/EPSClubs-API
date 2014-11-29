@@ -5,9 +5,9 @@ class Event{
   public $name;
   public $description;
   public $location;
-  public $startDateTime;
-  public $endDateTime;
-  public $listShifts;
+  public $start_date_time;
+  public $end_date_time;
+  public $list_shifts;
 
   public function save()
   {
@@ -21,9 +21,9 @@ class Event{
       'name' => $this->name,
       'description' => $this->description,
       'location' => $this->location,
-      'startDateTime' => $this->startDateTime,
-      'endDateTime' => $this->endDateTime,
-      'listShifts' => $this->listShifts
+      'start_date_time' => $this->start_date_time,
+      'end_date_time' => $this->end_date_time,
+      'list_shifts' => $this->list_shifts
     );
   }
 }

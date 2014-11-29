@@ -15,8 +15,8 @@ class EventController{
     $event->name = $this->_params['name'];
     $event->description = $this->_params['description'];
     $event->location = $this->_params['location'];
-    $event->startDateTime = $this->_params['startDateTime'];
-    $event->endDateTime = $this->_params['endDateTime'];
+    $event->start_date_time = $this->_params['start_date_time'];
+    $event->end_date_time = $this->_params['end_date_time'];
   }
 
   public function read()
