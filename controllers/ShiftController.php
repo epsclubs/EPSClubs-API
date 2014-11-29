@@ -11,6 +11,9 @@ class ShiftController{
   public function create()
   {
     $shift = new Shift();
+    $shift->code = $this->_params['code'];
+    $shift->eventID = $this->_params['eventID'];
+    $shift->listVolunteers = $this->_params['listVolunteers'];
   }
 
   public function read()

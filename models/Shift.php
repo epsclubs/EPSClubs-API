@@ -5,10 +5,14 @@ class Shift{
   public $eventID;
   public $listVolunteers;
 
+  public function save()
+  {
+
+  }
+
   public function toArray()
   {
     return array(
-      'id' => $this->id,
       'code' => $this->code,
       'eventID' => $this->eventID,
       'listVolunteers' => $this->listVolunteers

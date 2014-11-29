@@ -11,6 +11,12 @@ class EventController{
   public function create()
   {
     $event = new Event();
+    $event->code = $this->_params['code'];
+    $event->name = $this->_params['name'];
+    $event->description = $this->_params['description'];
+    $event->location = $this->_params['location'];
+    $event->startDateTime = $this->_params['startDateTime'];
+    $event->endDateTime = $this->_params['endDateTime'];
   }
 
   public function read()

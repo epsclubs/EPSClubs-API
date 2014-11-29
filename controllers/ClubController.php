@@ -11,6 +11,11 @@ class ClubController{
   public function create()
   {
     $club = new Club();
+    $club->code = $this->_params['code'];
+    $club->name = $this->_params['name'];
+    $club->description = $this->_params['description'];
+    $club->listExecs = $this->_params['listExecs'];
+    $club->listMembers = $this->_params['listMembers'];
   }
 
   public function read()

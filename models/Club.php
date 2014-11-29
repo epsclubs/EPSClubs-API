@@ -8,10 +8,14 @@ class Club{
   public $list_members;
   public $list_events;
 
+  public function save()
+  {
+
+  }
+
   public function toArray()
   {
     return array(
-      'id' => $this->id,
       'code' => $this->code,
       'name' => $this->name,
       'description' => $this->description,

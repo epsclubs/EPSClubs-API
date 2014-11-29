@@ -11,10 +11,14 @@ class User{
   public $list_clubs;
   public $list_shifts;
 
+  public function save()
+  {
+
+  }
+
   public function toArray()
   {
     return array(
-      'id' => $this->id,
       'username' => $this->username,
       'email' => $this->email,
       'first_name' => $this->first_name,

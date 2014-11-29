@@ -11,6 +11,7 @@ $applications = array(
 include_once 'models/Club.php';
 include_once 'models/Event.php';
 include_once 'models/Shift.php';
+include_once 'models/User.php';
 
 //wrap the whole thing in a try-catch block to catch any wayward exceptions!
 try {
