@@ -1,14 +1,70 @@
 <?php
-
-class Club{
+/**
+* class Club
+*
+* This is a model of the Club object.
+*
+* @version development
+* @author Ben Zhang
+* @project EPSClubs-API
+*/
+class Club
+{
+  /**
+  * Club Code
+  * @example EPS_PROGRAMMING
+  * @access public
+  * @var string
+  */
   public $code;
+  /**
+  * Club Name
+  * @example Elgin Park Computer Programming Club
+  * @access public
+  * @var string
+  */
   public $name;
+  /**
+  * Club Description
+  * @example Elgin Park Computer Programming Club is a club where people learn about programming.
+  * @access public
+  * @var string
+  */
   public $description;
+  /**
+  * List of Club Executives (Student Numbers)
+  * @example 1111111,1111112,9012934
+  * @access public
+  * @var comma-separated string (can be converted to array with explode(',',$arr))
+  */
   public $list_execs;
+  /**
+  * List of Club Members (Student Numbers)
+  * @example 1111111,1111112,9012934
+  * @access public
+  * @var comma-separated string (can be converted to array with explode(',',$arr))
+  */
   public $list_members;
+  /**
+  * List of Club Events (Event Codes)
+  * @example EPS_PROGRAMMING_EVENT1,EPS_PROGRAMMING_EVENT2
+  * @access public
+  * @var comma-separated string (can be converted to array with explode(',',$arr))
+  */
   public $list_events;
 
-  public function save(/* username and password*/)
+  /**
+  * function save()
+  *
+  * This is a function that saves the Club object into the database.
+  *
+  * @param string $username
+  * @param string $userpass
+  * @return array for the Club object
+  *
+  * @todo username and userpass params for authentication
+  */
+  public function save(/* username and userpass*/)
   {
     if(isset($this->code) && isset($this->name)){
       $mysqli = DBConnector::connectMySQL();
@@ -19,6 +75,13 @@ class Club{
     }
   }
 
+  /**
+  * function toArray()
+  *
+  * This is a function that converts the Club object into an array.
+  *
+  * @return array for the Club object
+  */
   public function toArray()
   {
     return array(
