@@ -61,15 +61,26 @@ class Club
   *
   * @param string $username
   * @param string $userpass
+  * @param bool $update determine the calling function to either update or create Club in database
   * @return array for the Club object
   *
   * @todo username and userpass params for authentication
   */
-  public function save(/* username and userpass*/)
+  public function save(/* username and userpass*/$update = false)
   {
     if(isset($this->code) && isset($this->name)){
+      if(!$update){
+        $q = "INSERT INTO clubs (code,name,description)
+              VALUES('$this->code','$this->name','$this->description')";
+      }else{
+        $q = "UPDATE clubs
+              SET name='$this->name',description='$this->description'
+              WHERE code='$this->code'";
+      }
+
       $mysqli = DBConnector::connectMySQL();
-      if(!($result = $mysqli->query("INSERT INTO clubs (code,name,description) VALUES('$this->code','$this->name','$this->description')"))){
+      if(!($result = $mysqli->query($q)))
+      {
         throw new Exception('Failed to save club: ['.$mysqli->errno.'] '.$mysqli->error);
       }
       return $this->toArray();

@@ -83,6 +83,7 @@ class ClubController{
         throw new Exception('Failed to read club: ['.$mysqli->errno.'] '.$mysqli->error);
       }
       $row = $result->fetch_array(MYSQLI_ASSOC);
+      if(!$row['code']) throw new Exception('Failed to read club: Club with code "'.$this->_params['code'].'" cannot be found.');
       $club = new Club();
       $club->code = $row['code'];
       $club->name = $row['name'];
@@ -142,8 +143,6 @@ class ClubController{
   * @param string optional $params['name']
   * @param string optional $params['description']
   *
-  * @param string optional $params['event_code']
-  *
   * @param string optional $params['user_student_number']
   * @param string optional $params['user_role']
   *
@@ -151,9 +150,31 @@ class ClubController{
   *
   * @todo everything
   */
-  public function upateAction()
+  public function updateAction()
   {
-    // Update a club
+    if(isset($this->_params['code'])){
+      // Getting data from DB
+      $clubArr = $this->readAction();
+      $club = new Club();
+      $club->code = $clubArr['code'];
+      $club->name = $clubArr['name'];
+      $club->description = $clubArr['description'];
+
+      // Updating info
+      if(isset($this->_params['name'])){
+        $club->name = $this->_params['name'];
+      }
+
+      if(isset($this->_params['description'])){
+        $club->description = $this->_params['description'];
+      }
+
+      $club->save(/*username and userpass*/true);
+
+      return $club->toArray();
+    }else{
+      throw new Exception('No \'code\' parameter passed for update event function');
+    }
   }
 
   /**
