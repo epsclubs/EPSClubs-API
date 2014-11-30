@@ -26,7 +26,8 @@ class Club
   public $name;
   /**
   * Club Description
-  * Ex: Elgin Park Computer Programming Club is a club where people learn about programming.
+  * Ex: Elgin Park Computer Programming Club is a club
+  *     where people learn about programming.
   * @access public
   * @var string
   */
