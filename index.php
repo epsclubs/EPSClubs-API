@@ -36,6 +36,9 @@ try {
     //   throw new Exception('Request is not valid');
     // }
 
+    /**
+    * @todo to be removed
+    */
     $params = $_REQUEST;
 
     //cast it into an array
