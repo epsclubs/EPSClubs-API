@@ -12,27 +12,31 @@ include_once 'models/Club.php';
 include_once 'models/Event.php';
 include_once 'models/Shift.php';
 include_once 'models/User.php';
+include_once 'controllers/Authenticator.php';
+include_once 'controllers/DBConnector.php';
 
 //wrap the whole thing in a try-catch block to catch any wayward exceptions!
 try {
-    //get the encrypted request
-    $enc_request = $_REQUEST['enc_request'];
+    // get the encrypted request
+    // $enc_request = $_REQUEST['enc_request'];
+    //
+    // //get the provided app id
+    // $app_id = $_REQUEST['app_id'];
+    //
+    // //check first if the app id exists in the list of applications
+    // if( !isset($applications[$app_id]) ) {
+    //   throw new Exception('Application does not exist!');
+    // }
+    //
+    // //decrypt the request
+    // $params = json_decode(trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $applications[$app_id], base64_decode($enc_request), MCRYPT_MODE_ECB)));
+    //
+    // //check if the request is valid by checking if it's an array and looking for the controller and action
+    // if( $params == false || isset($params->controller) == false || isset($params->action) == false ) {
+    //   throw new Exception('Request is not valid');
+    // }
 
-    //get the provided app id
-    $app_id = $_REQUEST['app_id'];
-
-    //check first if the app id exists in the list of applications
-    if( !isset($applications[$app_id]) ) {
-      throw new Exception('Application does not exist!');
-    }
-
-    //decrypt the request
-    $params = json_decode(trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $applications[$app_id], base64_decode($enc_request), MCRYPT_MODE_ECB)));
-
-    //check if the request is valid by checking if it's an array and looking for the controller and action
-    if( $params == false || isset($params->controller) == false || isset($params->action) == false ) {
-      throw new Exception('Request is not valid');
-    }
+    $params = $_REQUEST;
 
     //cast it into an array
     $params = (array) $params;

@@ -8,9 +8,15 @@ class Club{
   public $list_members;
   public $list_events;
 
-  public function save()
+  public function save(/* username and password*/)
   {
-
+    if(isset($this->code) && isset($this->name)){
+      $mysqli = DBConnector::connectMySQL();
+      if(!($result = $mysqli->query("INSERT INTO clubs (code,name,description) VALUES('$this->code','$this->name','$this->description')"))){
+        throw new Exception('Failed to save club: ['.$mysqli->errno.'] '.$mysqli->error);
+      }
+      return $this->toArray();
+    }
   }
 
   public function toArray()
@@ -19,9 +25,9 @@ class Club{
       'code' => $this->code,
       'name' => $this->name,
       'description' => $this->description,
-      'listExecs' => $this->listExecs,
-      'listMembers' => $this->listMembers,
-      'listEvents' => $this->listEvents
+      'list_execs' => $this->list_execs,
+      'list_members' => $this->list_members,
+      'list_events' => $this->list_events
     );
   }
 }

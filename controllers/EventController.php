@@ -8,7 +8,7 @@ class EventController{
     $this->_params = $params;
   }
 
-  public function create()
+  public function createAction()
   {
     $event = new Event();
     $event->code = $this->_params['code'];
@@ -19,17 +19,17 @@ class EventController{
     $event->end_date_time = $this->_params['end_date_time'];
   }
 
-  public function read()
+  public function readAction()
   {
     // Read a event
   }
 
-  public function upate()
+  public function upateAction()
   {
     // Update a event
   }
 
-  public function delete()
+  public function deleteAction()
   {
     // Delete a event
   }

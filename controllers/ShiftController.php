@@ -8,7 +8,7 @@ class ShiftController{
     $this->_params = $params;
   }
 
-  public function create()
+  public function createAction()
   {
     $shift = new Shift();
     $shift->code = $this->_params['code'];
@@ -17,17 +17,17 @@ class ShiftController{
     $shift->status = $this->_params['status'];
   }
 
-  public function read()
+  public function readAction()
   {
     // Read a shift
   }
 
-  public function upate()
+  public function upateAction()
   {
     // Update a shift
   }
 
-  public function delete()
+  public function deleteAction()
   {
     // Delete a shift
   }

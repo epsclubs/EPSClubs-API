@@ -8,7 +8,7 @@ class UserController{
     $this->_params = $params;
   }
 
-  public function create()
+  public function createAction()
   {
     $user = new User();
     $user->username = $this->_params['username'];
@@ -22,17 +22,17 @@ class UserController{
     $user->list_shifts = $this->_params['list_shifts'];
   }
 
-  public function read()
+  public function readAction()
   {
     // Read a user
   }
 
-  public function upate()
+  public function upateAction()
   {
     // Update a user
   }
 
-  public function delete()
+  public function deleteAction()
   {
     // Delete a user
   }
