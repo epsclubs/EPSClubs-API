@@ -18,6 +18,13 @@ class Event
   */
   public $code;
   /**
+  * Club Code of Parent Club
+  * Ex: EPS_PROGRAMMING
+  * @access public
+  * @var string
+  */
+  public $club_code;
+  /**
   * Event Name
   * Ex: The Awesome Donut Sale Event
   * @access public
@@ -69,9 +76,23 @@ class Event
   *
   * @todo Everything in this method
   */
-  public function save()
+  public function save($update = false)
   {
+    if(!$update){
+      $q = "INSERT INTO events (code,club_code,name,description,location,start_date_time,end_date_time)
+      VALUES('$this->code','$this->club_code','$this->name','$this->description','$this->location','$this->start_date_time','$this->end_date_time')";
+    }else{
+      $q = "UPDATE events
+      SET club_code='$this->club_code',name='$this->name',description='$this->description',location='$this->location',start_date_time='$this->start_date_time',end_date_time='$this->end_date_time'
+      WHERE code='$this->code'";
+    }
 
+    $mysqli = DBConnector::connectMySQL();
+    if(!($result = $mysqli->query($q)))
+    {
+      throw new Exception('Failed to save club: ['.$mysqli->errno.'] '.$mysqli->error);
+    }
+    return $this->toArray();
   }
 
   /**
@@ -85,6 +106,7 @@ class Event
   {
     return array(
       'code' => $this->code,
+      'club_code' => $this->club_code,
       'name' => $this->name,
       'description' => $this->description,
       'location' => $this->location,

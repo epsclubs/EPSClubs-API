@@ -17,6 +17,13 @@ class Shift{
   */
   public $code;
   /**
+  * Event Code for the corresponding event
+  * Ex: EPS_PROGRAMMING_EVENT1
+  * @access public
+  * @var string
+  */
+  public $event_code;
+  /**
   * Shift Name
   * Ex: Money collection
   * @access public
@@ -30,13 +37,6 @@ class Shift{
   * @var string
   */
   public $description;
-  /**
-  * Event Code for the corresponding event
-  * Ex: EPS_PROGRAMMING_EVENT1
-  * @access public
-  * @var string
-  */
-  public $event_code;
   /**
   * List of Shift Volunteers (Student Numbers)
   * Ex: 1111111,1111112,9012934
@@ -89,9 +89,9 @@ class Shift{
   {
     return array(
       'code' => $this->code,
+      'event_code' => $this->event_code,
       'name' => $this->name,
       'description' => $this->description,
-      'event_code' => $this->event_code,
       'list_volunteers' => $this->list_volunteers,
       'volunteer_limit' => $this->volunteer_limit,
       'status' => $this->status

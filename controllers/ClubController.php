@@ -48,6 +48,10 @@ class ClubController{
   */
   public function createAction()
   {
+    if(!isset($this->_params['code'])||
+      !isset($this->_params['name'])||
+      !isset($this->_params['description'])
+      ){throw new Exception('Cannot create Club: Parameter incomplete');}
     $club = new Club();
     $club->code = $this->_params['code'];
     $club->name = $this->_params['name'];
@@ -74,60 +78,59 @@ class ClubController{
   */
   public function readAction()
   {
-    if(isset($this->_params['code'])){
-      $club_code = $this->_params['code'];
-      $mysqli = DBConnector::connectMySQL();
-
-      // Basic Info
-      if(!($result = $mysqli->query("SELECT * FROM `clubs` WHERE code='$club_code'"))){
-        throw new Exception('Failed to read club: ['.$mysqli->errno.'] '.$mysqli->error);
-      }
-      $row = $result->fetch_array(MYSQLI_ASSOC);
-      if(!$row['code']) throw new Exception('Failed to read club: Club with code "'.$this->_params['code'].'" cannot be found.');
-      $club = new Club();
-      $club->code = $row['code'];
-      $club->name = $row['name'];
-      $club->description = $row['description'];
-
-      // Extra scope info: list_execs, list_members, list_events
-      if(isset($this->_params['scope'])){
-        $scope = explode(',',$this->_params['scope']);
-        if(in_array('list_execs',$scope)){
-          if(!($result = $mysqli->query("SELECT user_student_number FROM `club_user` WHERE club_code='$club_code' AND user_role='0'"))){
-            throw new Exception('Failed to read executive list: ['.$mysqli->errno.'] '.$mysqli->error);
-          }
-          $execs = array();
-          while($row = $result->fetch_array(MYSQLI_ASSOC)){
-            $execs[] = $row['user_student_number'];
-          }
-          $club->list_execs = implode(',',$execs);
-        }
-        if(in_array('list_members',$scope)){
-          if(!($result = $mysqli->query("SELECT user_student_number FROM `club_user` WHERE club_code='$club_code' AND user_role='1'"))){
-            throw new Exception('Failed to read member list: ['.$mysqli->errno.'] '.$mysqli->error);
-          }
-          $members = array();
-          while($row = $result->fetch_array(MYSQLI_ASSOC)){
-            $members[] = $row['user_student_number'];
-          }
-          $club->list_members = implode(',',$members);
-        }
-        if(in_array('list_events',$scope)){
-          if(!($result = $mysqli->query("SELECT event_code FROM `club_event` WHERE club_code='$club_code'"))){
-            throw new Exception('Failed to read event list: ['.$mysqli->errno.'] '.$mysqli->error);
-          }
-          $events = array();
-          while($row = $result->fetch_array(MYSQLI_ASSOC)){
-            $events[] = $row['club_event'];
-          }
-          $club->list_events = implode(',',$events);
-        }
-      }
-
-      return $club->toArray();
-    }else{
-      throw new Exception('No \'code\' parameter passed for read event function');
+    if(!isset($this->_params['code'])){
+      throw new Exception('No \'code\' parameter passed for read club function');
     }
+    $club_code = $this->_params['code'];
+    $mysqli = DBConnector::connectMySQL();
+
+    // Basic Info
+    if(!($result = $mysqli->query("SELECT * FROM `clubs` WHERE code='$club_code'"))){
+      throw new Exception('Failed to read club: ['.$mysqli->errno.'] '.$mysqli->error);
+    }
+    $row = $result->fetch_array(MYSQLI_ASSOC);
+    if(!$row['code']) throw new Exception('Failed to read club: Club with code "'.$club_code.'" cannot be found.');
+    $club = new Club();
+    $club->code = $row['code'];
+    $club->name = $row['name'];
+    $club->description = $row['description'];
+
+    // Extra scope info: list_execs, list_members, list_events
+    if(isset($this->_params['scope'])){
+      $scope = explode(',',$this->_params['scope']);
+      if(in_array('list_execs',$scope)){
+        if(!($result = $mysqli->query("SELECT user_student_number FROM `club_user` WHERE club_code='$club_code' AND user_role='0'"))){
+          throw new Exception('Failed to read executive list: ['.$mysqli->errno.'] '.$mysqli->error);
+        }
+        $execs = array();
+        while($row = $result->fetch_array(MYSQLI_ASSOC)){
+          $execs[] = $row['user_student_number'];
+        }
+        $club->list_execs = implode(',',$execs);
+      }
+      if(in_array('list_members',$scope)){
+        if(!($result = $mysqli->query("SELECT user_student_number FROM `club_user` WHERE club_code='$club_code' AND user_role='1'"))){
+          throw new Exception('Failed to read member list: ['.$mysqli->errno.'] '.$mysqli->error);
+        }
+        $members = array();
+        while($row = $result->fetch_array(MYSQLI_ASSOC)){
+          $members[] = $row['user_student_number'];
+        }
+        $club->list_members = implode(',',$members);
+      }
+      if(in_array('list_events',$scope)){
+        if(!($result = $mysqli->query("SELECT code FROM `events` WHERE club_code='$club_code'"))){
+          throw new Exception('Failed to read event list: ['.$mysqli->errno.'] '.$mysqli->error);
+        }
+        $events = array();
+        while($row = $result->fetch_array(MYSQLI_ASSOC)){
+          $events[] = $row['code'];
+        }
+        $club->list_events = implode(',',$events);
+      }
+    }
+
+    return $club->toArray();
   }
 
   /**
