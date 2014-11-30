@@ -11,63 +11,63 @@
 class User{
   /**
   * Username for User
-  * @example some_people
+  * Ex: some_people
   * @access public
   * @var string
   */
   public $username;
   /**
   * Email Address for User
-  * @example someone@somedomain.com
+  * Ex: someone@somedomain.com
   * @access public
   * @var string
   */
   public $email;
   /**
   * First Name of User
-  * @example Someone
+  * Ex: Someone
   * @access public
   * @var string
   */
   public $first_name;
   /**
   * Last Name of User
-  * @example SomePeople
+  * Ex: SomePeople
   * @access public
   * @var string
   */
   public $last_name;
   /**
   * Student Number of User
-  * @example 1111111
+  * Ex: 1111111
   * @access public
   * @var int
   */
   public $student_number;
   /**
   * Year of Graduation
-  * @example 2015
+  * Ex: 2015
   * @access public
   * @var int
   */
   public $class_of;
   /**
   * Number of volunteer hours the User have
-  * @example 50
+  * Ex: 50
   * @access public
   * @var int
   */
   public $volunteer_hours;
   /**
   * List of Clubs the User is in
-  * @example EPS_PROGRAMMING,EPS_CCYS
+  * Ex: EPS_PROGRAMMING,EPS_CCYS
   * @access public
   * @var comma-separated string (can be converted to array with explode(',',$arr))
   */
   public $list_clubs;
   /**
   * List of Shifts the User has done/will be doing
-  * @example EPS_PROGRAMMING_EVENT1_SHIFT1,EPS_PROGRAMMING_EVENT1_SHIFT2
+  * Ex: EPS_PROGRAMMING_EVENT1_SHIFT1,EPS_PROGRAMMING_EVENT1_SHIFT2
   * @access public
   * @var comma-separated string (can be converted to array with explode(',',$arr))
   */

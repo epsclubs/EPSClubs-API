@@ -12,42 +12,42 @@ class Club
 {
   /**
   * Club Code
-  * @example EPS_PROGRAMMING
+  * Ex: EPS_PROGRAMMING
   * @access public
   * @var string
   */
   public $code;
   /**
   * Club Name
-  * @example Elgin Park Computer Programming Club
+  * Ex: Elgin Park Computer Programming Club
   * @access public
   * @var string
   */
   public $name;
   /**
   * Club Description
-  * @example Elgin Park Computer Programming Club is a club where people learn about programming.
+  * Ex: Elgin Park Computer Programming Club is a club where people learn about programming.
   * @access public
   * @var string
   */
   public $description;
   /**
   * List of Club Executives (Student Numbers)
-  * @example 1111111,1111112,9012934
+  * Ex: 1111111,1111112,9012934
   * @access public
   * @var comma-separated string (can be converted to array with explode(',',$arr))
   */
   public $list_execs;
   /**
   * List of Club Members (Student Numbers)
-  * @example 1111111,1111112,9012934
+  * Ex: 1111111,1111112,9012934
   * @access public
   * @var comma-separated string (can be converted to array with explode(',',$arr))
   */
   public $list_members;
   /**
   * List of Club Events (Event Codes)
-  * @example EPS_PROGRAMMING_EVENT1,EPS_PROGRAMMING_EVENT2
+  * Ex: EPS_PROGRAMMING_EVENT1,EPS_PROGRAMMING_EVENT2
   * @access public
   * @var comma-separated string (can be converted to array with explode(',',$arr))
   */

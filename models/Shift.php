@@ -11,42 +11,42 @@
 class Shift{
   /**
   * Shift Code
-  * @example EPS_PROGRAMMING_EVENT1_SHIFT1
+  * Ex: EPS_PROGRAMMING_EVENT1_SHIFT1
   * @access public
   * @var string
   */
   public $code;
   /**
   * Shift Name
-  * @example Money collection
+  * Ex: Money collection
   * @access public
   * @var string
   */
   public $name;
   /**
   * Shift Description
-  * @example This money collection shift manages money.
+  * Ex: This money collection shift manages money.
   * @access public
   * @var string
   */
   public $description;
   /**
   * Event Code for the corresponding event
-  * @example EPS_PROGRAMMING_EVENT1
+  * Ex: EPS_PROGRAMMING_EVENT1
   * @access public
   * @var string
   */
   public $event_code;
   /**
   * List of Shift Volunteers (Student Numbers)
-  * @example 1111111,1111112,9012934
+  * Ex: 1111111,1111112,9012934
   * @access public
   * @var comma-separated string (can be converted to array with explode(',',$arr))
   */
   public $list_volunteers;
   /**
   * Maximum number of volunteers that can volunteer for this shift
-  * @example 5
+  * Ex: 5
   * @access public
   * @var int
   */
@@ -58,7 +58,7 @@ class Shift{
   * 1 = Open to Club Members,
   * 2 = Closed/Only execs can add volunteers
   *
-  * @example 0
+  * Ex: 0
   * @access public
   * @var int
   */
