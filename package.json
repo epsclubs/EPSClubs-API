@@ -1,8 +1,7 @@
 {
   "name": "EPSClubs-API",
   "version": "0.2.0",
-  "description": "NodeJS API for the EPSClubs project, created to replace
-                  the current bulky and messy PHP API.",
+  "description": "NodeJS API for the EPSClubs project, created to replace the current bulky and messy PHP API.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
