@@ -14,9 +14,10 @@ server.use restify.acceptParser(server.acceptable)
 server.use restify.queryParser()
 server.use restify.bodyParser()
 
-if 'development' === config.options.env
+if 'development' == config.options.env
   morgan = require('morgan')
   server.use morgan('dev')
+  console.log 'development'
 
 models.Note = mongoose.model('notes', Schema.NoteSchema)
 
