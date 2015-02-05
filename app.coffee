@@ -14,7 +14,7 @@ server.use restify.acceptParser(server.acceptable)
 server.use restify.queryParser()
 server.use restify.bodyParser()
 
-if 'development' == config.options.env
+if 'development' === config.options.env
   morgan = require('morgan')
   server.use morgan('dev')
 
