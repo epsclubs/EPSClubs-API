@@ -1,6 +1,7 @@
 Schema = require('mongoose').Schema
 
 exports.NoteSchema = new Schema(
+  _id: String
   title:
     type: String
     required: true
@@ -9,6 +10,19 @@ exports.NoteSchema = new Schema(
     required: true
   tags: [ String ]
   content: type: String)
+
+exports.MenuSchema = new Schema(
+  _id:
+    type: String
+    index: unique: true
+    lowercase: true
+    required: true
+  pages: [{
+    href: String
+    glyphicon: String
+    title: String
+  }]
+)
 
 exports.UserSchema = new Schema(
   _id:

@@ -12,7 +12,7 @@ server = restify.createServer(
 
 server.use restify.acceptParser(server.acceptable)
 server.use restify.queryParser()
-server.use restify.bodyParser()
+server.use restify.bodyParser(mapParams: true)
 
 if 'development' == config.options.env
   morgan = require('morgan')
@@ -20,8 +20,12 @@ if 'development' == config.options.env
   console.log 'development'
 
 models.Note = mongoose.model('notes', Schema.NoteSchema)
+models.Menu = mongoose.model('menus', Schema.MenuSchema)
+models.User = mongoose.model('users', Schema.UserSchema)
 
 restifyMongoose(models.Note).serve '/notes', server
+restifyMongoose(models.Menu).serve '/menus', server
+restifyMongoose(models.User).serve '/users', server
 
 server.get '/echo/:name', (req, res, next) ->
   res.send req.params
